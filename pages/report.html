@@ -6,17 +6,25 @@
   <title>Репорт</title>
   <link rel="stylesheet" href="../design/global.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 <body>
   <header>Client Filter</header>
 
   <div class="container">
     <nav>
-      <button><a href="../index.html">Dashboard</a></button>
-      <button><a href="report.html">Reporting</a></button>
+      <a href="../index.html"><button>Dashboard</button></a>
+      <a href="report.html"><button>Reporting</button></a>
     </nav>
 
     <main>
+
+      <label style="margin-left: 10px;">
+        <input type="checkbox" id="exclusiveToggle" checked>
+        Onely one open
+      </label>
 
       <div class="table-container" id="scrollable-container">
         <table id="report-table">
@@ -63,8 +71,6 @@
 </div>
 </footer>
 
-
-<script src="https://code.highcharts.com/highcharts.js"></script>
 <script type="module" src="../script/loadReport2v.js"></script>
 
 <script src="../script/scrollToTop.js"></script>

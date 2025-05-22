@@ -37,7 +37,7 @@ nav button a{
     color: #000;
 }
 
-nav button:hover {
+nav a:hover {
   background-color: #ccc;
 }
 

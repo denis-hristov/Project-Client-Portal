@@ -1,10 +1,10 @@
 fetch('../data/data.json')
   .then(res => res.json())
   .then(json => {
-    const flat = json.data.flat(); // flatten вложения масив
+    const flat = json.data.flat();
     const grouped = {};
 
-    // Групиране по въпрос (Col005)
+    
     flat.forEach(entry => {
       const question = entry.Col005;
       const answer = entry.Col002;
@@ -21,7 +21,7 @@ fetch('../data/data.json')
       grouped[question][answer] += count;
     });
 
-    // Преобразуване в масив във формат, който очаква renderReportingTable
+
     const formatted = Object.entries(grouped).map(([question, answers]) => ({
       question,
       answers
@@ -48,10 +48,31 @@ function renderReportingTable(data) {
       <td>${topAnswer}<br><small>${topPercent}%</small></td>
       <td>${total}</td>
     `;
-    mainRow.addEventListener('click', () => {
-      const detailRow = document.getElementById(`detail-${index}`);
-      detailRow.style.display = detailRow.style.display === 'table-row' ? 'none' : 'table-row';
+    
+
+
+ mainRow.addEventListener('click', () => {
+  const detailRow = document.getElementById(`detail-${index}`);
+  const exclusiveMode = document.getElementById('exclusiveToggle').checked;
+
+  if (exclusiveMode) {
+    const allDetails = document.querySelectorAll('.detail-row');
+    allDetails.forEach(row => {
+      if (row !== detailRow) {
+        row.style.display = 'none';
+      }
     });
+  }
+
+  detailRow.style.display = detailRow.style.display === 'table-row' ? 'none' : 'table-row';
+});
+
+
+
+
+
+
+
 
     const detailRow = document.createElement('tr');
     detailRow.id = `detail-${index}`;
@@ -70,7 +91,13 @@ function renderReportingTable(data) {
       const isTop = answer === topAnswer;
       inner += `
         <tr class="${isTop ? 'top-answer' : ''}">
-          <td>${isTop ? '<span class="flag">TOP<div class="tooltip">Top Answer - a measure that identifies the value that appears most frequently in a set of data.</div></span>' : ''}${answer}</td>
+          <td>
+          ${answer}
+            ${isTop ? `
+                <span class="tooltip-wrapper">
+                    <div class="tooltip-inside"><i class="fa-solid fa-arrow-left"></i> TOP</div>
+                </span>
+            ` : ''}</td>
           <td>${percent}%</td>
           <td>${count}</td>
         </tr>

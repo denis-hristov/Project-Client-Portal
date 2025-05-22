@@ -16,3 +16,52 @@
 .main-row {
   cursor: pointer;
 }
+
+
+
+.tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: default;
+  margin-right: 6px;
+  display: flex;
+  justify-content: flex-end;
+  user-select: none;
+}
+
+.tooltip-inside {
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1f1f1f;
+  color: #fff;
+  padding: 6px 8px 6px 0px;
+  border-radius: 8px;
+  font-size: 14px;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease-in-out;
+  z-index: 999;
+}
+
+.tooltip-inside::after {
+  content: '';
+  position: absolute;
+  top: 25%;
+  right: 99%;
+  transform: rotate(90deg);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #1f1f1f transparent transparent transparent;
+}
+
+.tooltip-wrapper:hover .tooltip-inside {
+  transform: translateX(-50%) translateY(-4px);
+}
+
+.tooltip-inside i {
+  margin-left: 6px;
+  color: #f39c12;
+}
+
