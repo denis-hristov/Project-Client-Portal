@@ -151,3 +151,88 @@ export function renderBottom3Questions(data) {
 
   renderGroupedChart(bottom3, 'Bottom 3 Questions – Answer Breakdown');
 }
+
+
+
+
+export function renderExpandableAnswersTable(data) {
+  const tbody = document.getElementById('data-grid');
+  tbody.innerHTML = '';
+
+  const questionStats = {};
+
+  // Групиране по въпроси и отговори
+  data.forEach(row => {
+    const question = row.Col005;
+    const answer = row.Col002;
+    const count = row.Col003;
+
+    if (!questionStats[question]) {
+      questionStats[question] = { total: 0, answers: {} };
+    }
+
+    if (!questionStats[question].answers[answer]) {
+      questionStats[question].answers[answer] = 0;
+    }
+
+    questionStats[question].answers[answer] += count;
+    questionStats[question].total += count;
+  });
+
+  Object.entries(questionStats).forEach(([question, stat], index) => {
+    const entries = Object.entries(stat.answers);
+    const total = stat.total;
+    const [topAnswer, topCount] = entries.sort((a, b) => b[1] - a[1])[0];
+    const topPercent = ((topCount / total) * 100).toFixed(2);
+
+    // Основен ред
+    const mainRow = document.createElement('tr');
+    mainRow.classList.add('main-row');
+    mainRow.innerHTML = `
+      <td>${question}</td>
+      <td>${topAnswer}<br><small>${topPercent}%</small></td>
+      <td>${total} <span class="toggle-arrow" data-target="details-${index}">▼</span></td>
+    `;
+    tbody.appendChild(mainRow);
+
+    // Детайлен ред
+    const detailRow = document.createElement('tr');
+    detailRow.classList.add('detail-row');
+    detailRow.id = `details-${index}`;
+    detailRow.style.display = 'none';
+
+    let detailsTable = `
+      <table class="inner-table">
+        <thead>
+          <tr><th>Answer</th><th>Percentage</th><th>Count</th></tr>
+        </thead>
+        <tbody>
+    `;
+
+    entries.forEach(([answer, count]) => {
+      const percent = ((count / total) * 100).toFixed(2);
+      const isTop = answer === topAnswer;
+      detailsTable += `
+        <tr class="${isTop ? 'top-answer' : ''}">
+          <td>${isTop ? '<span class="flag">TOP</span> ' : ''}${answer}</td>
+          <td>${percent}%</td>
+          <td>${count}</td>
+        </tr>
+      `;
+    });
+
+    detailsTable += '</tbody></table>';
+    detailRow.innerHTML = `<td colspan="3">${detailsTable}</td>`;
+    tbody.appendChild(detailRow);
+  });
+
+  // Добавяме toggle функционалност
+  document.querySelectorAll('.toggle-arrow').forEach(el => {
+    el.addEventListener('click', () => {
+      const target = document.getElementById(el.dataset.target);
+      target.style.display = target.style.display === 'none' ? '' : 'none';
+      el.textContent = el.textContent === '▼' ? '▲' : '▼';
+    });
+  });
+}
+

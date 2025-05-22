@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Репорт</title>
+  <link rel="stylesheet" href="../design/global.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <header>Client Filter</header>
+
+  <div class="container">
+    <nav>
+      <button><a href="../index.html">Dashboard</a></button>
+      <button><a href="report.html">Reporting</a></button>
+    </nav>
+
+    <main>
+
+      <div class="table-container" id="scrollable-container">
+        <table id="report-table">
+          <thead>
+            <tr>
+              <th>QuestionText</th>
+              <th>Answer text - CSV</th>
+              <th>Responses</th>
+            </tr>
+          </thead>
+          <tbody id="report-body"></tbody>
+            </table>
+        </div>
+
+      <button id="scrollToTopBtn" title="Up" style="display: none;">
+        <i class="fa-solid fa-arrow-up"></i>
+      </button>
+	  
+    </main>
+</div>
+
+<footer>
+	<div class="footer-container">
+		<div class="footer-section">
+			<p>&copy; 2025 YourCompanyName. All rights reserved.</p>
+		</div>
+		
+		<div class="footer-section">
+			<a href="#">Terms of Service</a> |
+      <a href="#">Privacy Policy</a> |
+      <a href="#">Cookie Policy</a>
+    </div>
+
+    <div class="footer-section">
+		<p>Contact support: <a href="mailto:support@yourcompany.com">support@yourcompany.com</a></p>
+      <p>Phone: +1 (800) 123-4567</p>
+    </div>
+
+    <div class="footer-section last">
+		<p>Follow us:</p>
+      <a href="#"><i class="fa-brands fa-facebook-f"></i></a> |
+      <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+    </div>
+</div>
+</footer>
+
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script type="module" src="../script/loadReport2v.js"></script>
+
+<script src="../script/scrollToTop.js"></script>
+
+</body>
+</html>
