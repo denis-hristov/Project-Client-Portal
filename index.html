@@ -1,88 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="design/global.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  	<meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Dashboard</title>
+
+	<!-- css -->
+  	<link rel="stylesheet" href="design/global.css">
+	<!-- icons -->
+  	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-  <header>Client Filter
-      <select id="clientFilterDropdown">
-        <option value="All">All Clients</option>
-      </select>
-  </header>
+  	
+	<!-- filter -->
+	<header>
+		Client Filter
+  	    <select id="clientFilterDropdown">
+  	      	<option value="All">All Clients</option>
+  	    </select>
+  	</header>
 
-  <div class="container">
-    <nav>
-      <a href="index.html" id="nav-dashboard" class="nav-link">Dashboard</a>
-      <a href="pages/report.html" id="nav-report" class="nav-link">Reporting</a>
-    </nav>
+	<!-- main containr -->
+  	<div class="container">
 
-    <main>
-      <div class="charts">
-        <button class="chart-box" id="chart1">Row data</button>
-        <button class="chart-box" id="chart2">Group answers & sum calnd</button>
-        <button class="chart-box" id="chart3">Top 3 questions</button>
-        <button class="chart-box" id="chart4">Bottom 3 questions</button>
-      </div>
+		<!-- navigation -->
+  	  	<nav>
+  	  	  	<a href="index.html" id="nav-dashboard" class="nav-link">Dashboard</a>
+  	  	  	<a href="pages/report.html" id="nav-report" class="nav-link">Reporting</a>
+  	  	</nav>
 
-      
-      <div class="table-container" id="scrollable-container">
-        <table>
-            <thead>
-            	<tr>
-            	  <th>QuestionID</th>
-            	  <th>QuestionText</th>
-            	  <th>Answer text - CSV</th>
-            	  <th>Responses</th>
-            	</tr>
+  	  	<main>
 
-            	<div id="chart-container"></div>
+			<!-- buttons -->
+  	  	  	<div class="charts">
+  	  	  	  	<button class="chart-box" id="chart1">Row data</button>
+  	  	  	  	<button class="chart-box" id="chart2">Group answers & sum calnd</button>
+  	  	  	  	<button class="chart-box" id="chart3">Top 3 questions</button>
+  	  	  	  	<button class="chart-box" id="chart4">Bottom 3 questions</button>
+  	  	  	</div>
 
-          		<tbody id="data-grid"></tbody>
-        	</thead>
-        </table>
-      </div>
-	  
-      <button id="scrollToTopBtn" title="Up" style="display: none;">
-        <i class="fa-solid fa-arrow-up"></i>
-      </button>
-	  
-    </main>
-</div>
+			<!-- table -->
+  	  	  	<div class="table-container" id="scrollable-container">
+  	  	  	  	<table>
+  	  	  	  	    <thead>
+  	  	  	  	    	<tr>
+  	  	  	  	    	  	<th>QuestionID</th>
+  	  	  	  	    	  	<th>QuestionText</th>
+  	  	  	  	    	  	<th>Answer text - CSV</th>
+  	  	  	  	    	  	<th>Responses</th>
+  	  	  	  	    	</tr>
+						
+						<!-- chart -->
+  	  	  	  	    	<div id="chart-container"></div>
+								
+						<!-- data table -->
+  	  	  	  	  		<tbody id="data-grid"></tbody>
+  	  	  	  		</thead>
+  	  	  	  	</table>
+  	  	  	</div>
 
-<footer>
-	<div class="footer-container">
-		<div class="footer-section">
-			<p>&copy; 2025 YourCompanyName. All rights reserved.</p>
+			<!-- button for up -->
+  	  	  	<button id="scrollToTopBtn" title="Up" style="display: none;">
+  	  	  	  	<i class="fa-solid fa-arrow-up"></i>
+  	  	  	</button>
+
+  	  	</main>
+	</div>
+
+	<!-- footer -->
+	<footer>
+		<div class="footer-container">
+			<div class="footer-section">
+				<p>&copy; 2025 YourCompanyName. All rights reserved.</p>
+			</div>
+
+			<div class="footer-section">
+				<a href="#">Terms of Service</a> |
+	      		<a href="#">Privacy Policy</a> |
+	      		<a href="#">Cookie Policy</a>
+	    	</div>
+
+		    <div class="footer-section">
+				<p>Contact support: <a href="mailto:support@yourcompany.com">support@yourcompany.com</a></p>
+		      	<p>Phone: 088 8888 888</p>
+		    </div>
+
+		    <div class="footer-section last">
+				<p>Follow us:</p>
+		      	<a href="#"><i class="fa-brands fa-facebook-f"></i></a> |
+		      	<a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+		    </div>
 		</div>
-		
-		<div class="footer-section">
-			<a href="#">Terms of Service</a> |
-      <a href="#">Privacy Policy</a> |
-      <a href="#">Cookie Policy</a>
-    </div>
+	</footer>
 
-    <div class="footer-section">
-		<p>Contact support: <a href="mailto:support@yourcompany.com">support@yourcompany.com</a></p>
-      <p>Phone: +1 (800) 123-4567</p>
-    </div>
+	<!-- link menu -->
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<!-- script data table -->
+	<script type="module" src="script/main.js"></script>
 
-    <div class="footer-section last">
-		<p>Follow us:</p>
-      <a href="#"><i class="fa-brands fa-facebook-f"></i></a> |
-      <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-    </div>
-</div>
-</footer>
-
-
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script type="module" src="script/main.js"></script>
-
-<script src="script/scrollToTop.js"></script>
+	<!-- script button for up -->
+	<script src="script/scrollToTop.js"></script>
 
 </body>
 </html>

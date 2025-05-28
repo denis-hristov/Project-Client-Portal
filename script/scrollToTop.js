@@ -1,46 +1,47 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const scrollBtn = document.getElementById("scrollToTopBtn");
-  const tableContainer = document.getElementById("scrollable-container");
-  const mainContainer = document.querySelector(".container");
+  	const scrollBtn = document.getElementById("scrollToTopBtn");
+  	const tableContainer = document.getElementById("scrollable-container");
+  	const mainContainer = document.querySelector(".container");
 
-  if (!scrollBtn || !tableContainer || !mainContainer) {
-    console.warn("Missing required elements in DOM.");
-    return;
-  }
+	// check for missing elements
+  	if (!scrollBtn || !tableContainer || !mainContainer) {
+		console.warn("Missing elements in DOM.");
+  	    return;
+  	}
 
+	// check for mobile
+  	function isMobileView() {
+  	  	return window.innerWidth <= 768;
+  	}
 
-  function isMobileView() {
-    return window.innerWidth <= 768;
-  }
+	// fisibility
+  	function toggleButtonVisibility(scrollTopValue) {
+  	  	if (scrollTopValue > 20) {
+  	  	  	scrollBtn.style.display = "block";
+  	  	} else {
+  	  	  	scrollBtn.style.display = "none";
+  	  	}
+  	}
 
+	// scroll for mobile
+  	mainContainer.addEventListener("scroll", function () {
+  	  	if (isMobileView()) {
+  	    	toggleButtonVisibility(mainContainer.scrollTop);
+  	  	}
+  	});
 
-  function toggleButtonVisibility(scrollTopValue) {
-    if (scrollTopValue > 20) {
-      scrollBtn.style.display = "block";
-    } else {
-      scrollBtn.style.display = "none";
-    }
-  }
+	// scrol for desktop
+  	tableContainer.addEventListener("scroll", function () {
+  	  	if (!isMobileView()) {
+  	    	toggleButtonVisibility(tableContainer.scrollTop);
+  	  	}
+  	});
 
-
-  mainContainer.addEventListener("scroll", function () {
-    if (isMobileView()) {
-      toggleButtonVisibility(mainContainer.scrollTop);
-    }
-  });
-
-
-  tableContainer.addEventListener("scroll", function () {
-    if (!isMobileView()) {
-      toggleButtonVisibility(tableContainer.scrollTop);
-    }
-  });
-
-
-  scrollBtn.addEventListener("click", function () {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  });
+	// scrol up
+  	scrollBtn.addEventListener("click", function () {
+  	  	window.scrollTo({
+  	    	top: 0,
+  	    	behavior: "smooth"
+  	  	});
+  	});
 });

@@ -19,6 +19,10 @@
 
 
 
+label{
+  margin-left: 10px;
+}
+
 .tooltip-wrapper {
   position: relative;
   display: inline-block;

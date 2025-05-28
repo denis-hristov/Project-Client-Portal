@@ -1,83 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Репорт</title>
-  <link rel="stylesheet" href="../design/global.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  	<meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Report</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+	<!-- css -->
+  	<link rel="stylesheet" href="../design/global.css">
+	<!-- icons -->
+  	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+	
+	<!-- link ui -->
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+	
 </head>
 <body>
-  <header>Client Filter
-      <select id="clientFilterDropdown">
-        <option value="All">All Clients</option>
-      </select>
-  </header>
 
-  <div class="container">
-    <nav>
-      <a href="../index.html" id="nav-dashboard" class="nav-link">Dashboard</a>
-      <a href="report.html" id="nav-report" class="nav-link">Reporting</a>
-    </nav>
+	<!-- filter -->
+	<header>Client Filter
+	    <select id="clientFilterDropdown">
+	      	<option value="All">All Clients</option>
+	    </select>
+	</header>
 
-    <main>
+	<!-- main containr -->
+	<div class="container">
 
-      <label style="margin-left: 10px;">
-        <input type="checkbox" id="exclusiveToggle" checked>
-        Onely one open
-      </label>
+		<!-- navigation -->
+	    <nav>
+	      	<a href="../index.html" id="nav-dashboard" class="nav-link">Dashboard</a>
+	      	<a href="report.html" id="nav-report" class="nav-link">Reporting</a>
+	    </nav>
 
-      <div class="table-container" id="scrollable-container">
-        <table id="report-table">
-          <thead>
-            <tr>
-              <th>Question</th>
-              <th>TOP answer</th>
-              <th>Responses</th>
-            </tr>
-          </thead>
-          <tbody id="report-body"></tbody>
-            </table>
-        </div>
+	    <main>
 
-      <button id="scrollToTopBtn" title="Up" style="display: none;">
-        <i class="fa-solid fa-arrow-up"></i>
-      </button>
-	  
-    </main>
-</div>
+			<!-- checkbox -->
+	      	<label>
+	      	  <input type="checkbox" id="exclusiveToggle" checked>
+	      	  Onely one open
+	      	</label>
 
-<footer>
-	<div class="footer-container">
-		<div class="footer-section">
-			<p>&copy; 2025 YourCompanyName. All rights reserved.</p>
-		</div>
+			<!-- table -->
+	      	<div class="table-container" id="scrollable-container">
+	      	  	<table id="report-table">
+	      	  	  	<thead>
+	      	  	  	  	<tr>
+	      	  	  	  	  	<th>Question</th>
+	      	  	  	  	  	<th>TOP answer</th>
+	      	  	  	  	  	<th>Responses</th>
+	      	  	  	  	</tr>
+	      	  	  	</thead>
+
+					<!-- data grid -->
+	      	  	  	<tbody id="report-body"></tbody>
+	      	    </table>
+	      	</div>
+
+			<!-- button for up -->
+	      	<button id="scrollToTopBtn" title="Up" style="display: none;">
+	      	  	<i class="fa-solid fa-arrow-up"></i>
+	      	</button>
+
+	    </main>
+	</div>
+
+	<!-- footer -->
+	<footer>
+		<div class="footer-container">
+				<div class="footer-section">
+					<p>&copy; 2025 YourCompanyName. All rights reserved.</p>
+				</div>
+
+				<div class="footer-section">
+				<a href="#">Terms of Service</a> |
+		      	<a href="#">Privacy Policy</a> |
+		      	<a href="#">Cookie Policy</a>
+		    </div>
 		
-		<div class="footer-section">
-			<a href="#">Terms of Service</a> |
-      <a href="#">Privacy Policy</a> |
-      <a href="#">Cookie Policy</a>
-    </div>
+		    <div class="footer-section">
+				<p>Contact support: <a href="mailto:support@yourcompany.com">support@yourcompany.com</a></p>
+		      	<p>Phone: 088 8888 888</p>
+		    </div>
+		
+		    <div class="footer-section last">
+				<p>Follow us:</p>
+		      	<a href="#"><i class="fa-brands fa-facebook-f"></i></a> |
+		      	<a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+		    </div>
+		</div>
+	</footer>
 
-    <div class="footer-section">
-		<p>Contact support: <a href="mailto:support@yourcompany.com">support@yourcompany.com</a></p>
-      <p>Phone: +1 (800) 123-4567</p>
-    </div>
+	<!-- script data grid -->
+	<script type="module" src="../script/loadReport.js"></script>
 
-    <div class="footer-section last">
-		<p>Follow us:</p>
-      <a href="#"><i class="fa-brands fa-facebook-f"></i></a> |
-      <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-    </div>
-</div>
-</footer>
-
-<script type="module" src="../script/loadReport.js"></script>
-
-<script src="../script/scrollToTop.js"></script>
+	<!-- script button for up -->
+	<script src="../script/scrollToTop.js"></script>
 
 </body>
 </html>

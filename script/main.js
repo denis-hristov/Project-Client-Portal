@@ -5,22 +5,23 @@ import { destroyCurrentChart } from './renderChart.js';
 
 let selectedClient = 'All';
 
-
+// ui for buttons
 function setActiveButton(clickedBtn) {
   	document.querySelectorAll('.chart-box').forEach(btn => btn.classList.remove('active'));
   	clickedBtn.classList.add('active');
 }
 
-
+// filter by client
 function filterByClient(data, clientName) {
   	return clientName === 'All'
     	? data
     	: data.filter(row => row.Col006 === clientName);
 }
 
+// DOM
 document.addEventListener("DOMContentLoaded", () => {
 
-
+	// ui for navigation
 	const path = window.location.pathname;
   	if (path.includes("index.html")) {
   	  	document.getElementById("nav-dashboard")?.classList.add("active");
@@ -29,12 +30,13 @@ document.addEventListener("DOMContentLoaded", () => {
   	}
 
 
+	// filter by button
   	const chart1Btn = document.getElementById("chart1");
   	const chart2Btn = document.getElementById("chart2");
   	const chart3Btn = document.getElementById("chart3");
   	const chart4Btn = document.getElementById("chart4");
 
-  if (chart1Btn) {
+  	if (chart1Btn) {
     	chart1Btn.addEventListener("click", () => {
     	    setActiveButton(chart1Btn);
 			localStorage.setItem('activeChartId', 'chart1');
@@ -68,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
   	}
   
 
-
+	// load data
   	fetchData((data) => {
   	  	populateClientDropdown(data);
 		
@@ -102,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
   	});
 
 
-
+	// filter by drop-down menu
 	document.getElementById('clientFilterDropdown').addEventListener('change', (e) => {
     	selectedClient = e.target.value;
     	localStorage.setItem('selectedClient', selectedClient);
