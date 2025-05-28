@@ -51,7 +51,7 @@ nav {
   z-index: 1;
 }
 
-nav button {
+.nav-link {
   padding: 10px;
   border: none;
   background: none;
@@ -61,7 +61,13 @@ nav button {
   white-space: nowrap;
 }
 
-nav button a{
+.nav-link.active{
+  background-color: #999999;
+  color: #000;
+  font-weight: bold;
+}
+
+nav a{
     text-decoration: none;
     color: #000;
 }

@@ -1,17 +1,28 @@
 let allData = [];
 
 
-fetch('../data/data.json')
-  .then(res => res.json())
-  .then(json => {
-    allData = json.data.flat();
 
-    populateClientDropdown(allData);
+document.addEventListener("DOMContentLoaded", () => {
+  const path = window.location.pathname;
+  if (path.includes("index.html")) {
+    document.getElementById("nav-dashboard")?.classList.add("active");
+  } else if (path.includes("report.html")) {
+    document.getElementById("nav-report")?.classList.add("active");
+  }
 
-    const selectedClient = localStorage.getItem('selectedClient') || 'All';
-    renderFilteredData(selectedClient);
-  })
-  .catch(err => console.error('Error JSON:', err));
+
+	fetch('../data/data.json')
+	  .then(res => res.json())
+	  .then(json => {
+	    allData = json.data.flat();
+	
+	    populateClientDropdown(allData);
+	
+	    const selectedClient = localStorage.getItem('selectedClient') || 'All';
+	    renderFilteredData(selectedClient);
+	  })
+	  .catch(err => console.error('Error JSON:', err));
+});
 
 
 

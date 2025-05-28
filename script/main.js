@@ -46,6 +46,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   
+
+
+  const path = window.location.pathname;
+  if (path.includes("index.html")) {
+    document.getElementById("nav-dashboard")?.classList.add("active");
+  } else if (path.includes("report.html")) {
+    document.getElementById("nav-report")?.classList.add("active");
+  }
+
+
+
   fetchData((data) => {
     populateClientDropdown(data);
     renderFullTable(filterByClient(data, selectedClient));
