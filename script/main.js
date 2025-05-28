@@ -47,38 +47,37 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
   fetchData((data) => {
-  populateClientDropdown(data);
-  renderFullTable(filterByClient(data, selectedClient));
-});
-
-document.getElementById('clientFilterDropdown').addEventListener('change', (e) => {
-  selectedClient = e.target.value;
-
- 
-  const activeTab = document.querySelector('.chart-box.active')?.id || 'chart1';
-
-  fetchData((data) => {
-    const filtered = filterByClient(data, selectedClient);
-
-    switch (activeTab) {
-      case 'chart1':
-        destroyCurrentChart();
-        renderFullTable(filtered);
-        break;
-      case 'chart2':
-        renderSummarizedTable(filtered);
-        break;
-      case 'chart3':
-        renderTop3Questions(filtered);
-        break;
-      case 'chart4':
-        renderBottom3Questions(filtered);
-        break;
-    }
+    populateClientDropdown(data);
+    renderFullTable(filterByClient(data, selectedClient));
   });
-});
+  
+  document.getElementById('clientFilterDropdown').addEventListener('change', (e) => {
+    selectedClient = e.target.value;
+  
+    localStorage.setItem('selectedClient', selectedClient);
 
-
+    const activeTab = document.querySelector('.chart-box.active')?.id || 'chart1';
+  
+    fetchData((data) => {
+      const filtered = filterByClient(data, selectedClient);
+    
+      switch (activeTab) {
+        case 'chart1':
+          destroyCurrentChart();
+          renderFullTable(filtered);
+          break;
+        case 'chart2':
+          renderSummarizedTable(filtered);
+          break;
+        case 'chart3':
+          renderTop3Questions(filtered);
+          break;
+        case 'chart4':
+          renderBottom3Questions(filtered);
+          break;
+      }
+    });
+  });
 });
 
 

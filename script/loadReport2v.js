@@ -7,14 +7,17 @@ fetch('../data/data.json')
     allData = json.data.flat();
 
     populateClientDropdown(allData);
-    renderFilteredData('All');
+
+    const selectedClient = localStorage.getItem('selectedClient') || 'All';
+    renderFilteredData(selectedClient);
   })
-  .catch(err => console.error('Грешка при зареждане на JSON:', err));
+  .catch(err => console.error('Error JSON:', err));
+
 
 
 function populateClientDropdown(data) {
   const dropdown = document.getElementById('clientFilterDropdown');
-  const uniqueClients = [...new Set(data.map(row => row.Col006))];
+  const uniqueClients = [...new Set(data.map(row => row.Col006).filter(c => c && c.trim() !== ''))];
 
   uniqueClients.forEach(client => {
     const option = document.createElement('option');
@@ -23,11 +26,20 @@ function populateClientDropdown(data) {
     dropdown.appendChild(option);
   });
 
+  const savedClient = localStorage.getItem('selectedClient');
+  if (savedClient && uniqueClients.includes(savedClient)) {
+    dropdown.value = savedClient;
+  } else {
+    dropdown.value = 'All';
+  }
+
   dropdown.addEventListener('change', () => {
     const selectedClient = dropdown.value;
+    localStorage.setItem('selectedClient', selectedClient);
     renderFilteredData(selectedClient);
   });
 }
+
 
 
 function renderFilteredData(client) {
@@ -57,15 +69,26 @@ function renderFilteredData(client) {
 }
 
 
+
 function renderReportingTable(data) {
   const tbody = document.getElementById('report-body');
   tbody.innerHTML = '';
 
   data.forEach((item, index) => {
     const total = Object.values(item.answers).reduce((a, b) => a + b, 0);
-    const sorted = Object.entries(item.answers).sort((a, b) => b[1] - a[1]);
-    const [topAnswer, topCount] = sorted[0];
-    const topPercent = total ? ((topCount / total) * 100).toFixed(2) : '0.00';
+    const sorted = Object.entries(item.answers)
+
+    let topAnswer = null;
+    let topCount = -Infinity;
+
+    sorted.forEach(([answer, count]) => {
+      if (count > topCount) {
+        topCount = count;
+        topAnswer = answer;
+      }
+    });
+
+	const topPercent = total ? ((topCount / total) * 100).toFixed(2) : '0.00';
 
     const mainRow = document.createElement('tr');
     mainRow.classList.add('main-row');
@@ -101,7 +124,7 @@ function renderReportingTable(data) {
         <tbody>
     `;
 
-    sorted.forEach(([answer, count]) => {
+	sorted.forEach(([answer, count]) => {
       const percent = total ? ((count / total) * 100).toFixed(2) : '0.00';
       const isTop = answer === topAnswer;
       inner += `

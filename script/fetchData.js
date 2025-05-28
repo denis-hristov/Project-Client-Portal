@@ -12,10 +12,18 @@ export function fetchData(callback) {
 export function populateClientDropdown(data) {
   const dropdown = document.getElementById('clientFilterDropdown');
   const clients = [...new Set(data.map(row => row.Col006))];
+
   clients.forEach(client => {
     const option = document.createElement('option');
     option.value = client;
     option.textContent = client;
     dropdown.appendChild(option);
   });
+
+  const savedClient = localStorage.getItem('selectedClient');
+  if (savedClient && clients.includes(savedClient)) {
+    dropdown.value = savedClient;
+  } else {
+    dropdown.value = 'All';
+  }
 }

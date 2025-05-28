@@ -38,16 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   scrollBtn.addEventListener("click", function () {
-    if (isMobileView()) {
-      mainContainer.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    } else {
-      tableContainer.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   });
 });
