@@ -7,3 +7,15 @@ export function fetchData(callback) {
     .then(data => callback(data.data[0]))
     .catch(error => console.error('Error loading or parsing JSON:', error));
 }
+
+
+export function populateClientDropdown(data) {
+  const dropdown = document.getElementById('clientFilterDropdown');
+  const clients = [...new Set(data.map(row => row.Col006))];
+  clients.forEach(client => {
+    const option = document.createElement('option');
+    option.value = client;
+    option.textContent = client;
+    dropdown.appendChild(option);
+  });
+}

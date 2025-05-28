@@ -1,9 +1,38 @@
 header {
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
   background-color: #f5f5f5;
-  text-align: center;
+  font-size: 1.25rem;
   font-weight: bold;
+  color: #333;
+  border-bottom: 1px solid #ddd;
 }
+
+#clientFilterDropdown {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+#clientFilterDropdown:hover {
+  border-color: #999;
+  box-shadow: 0 0 5px #f0f0f0;
+}
+
+#clientFilterDropdown:focus {
+  outline: none;
+  border-color: #999;
+  box-shadow: 0 0 5px #f0f0f0;
+}
+
 
 .container {
   display: flex;

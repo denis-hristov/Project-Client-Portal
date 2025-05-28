@@ -1,35 +1,61 @@
+let allData = [];
+
+
 fetch('../data/data.json')
   .then(res => res.json())
   .then(json => {
-    const flat = json.data.flat();
-    const grouped = {};
+    allData = json.data.flat();
 
-    
-    flat.forEach(entry => {
-      const question = entry.Col005;
-      const answer = entry.Col002;
-      const count = entry.Col003;
-
-      if (!grouped[question]) {
-        grouped[question] = {};
-      }
-
-      if (!grouped[question][answer]) {
-        grouped[question][answer] = 0;
-      }
-
-      grouped[question][answer] += count;
-    });
-
-
-    const formatted = Object.entries(grouped).map(([question, answers]) => ({
-      question,
-      answers
-    }));
-
-    renderReportingTable(formatted);
+    populateClientDropdown(allData);
+    renderFilteredData('All');
   })
   .catch(err => console.error('Грешка при зареждане на JSON:', err));
+
+
+function populateClientDropdown(data) {
+  const dropdown = document.getElementById('clientFilterDropdown');
+  const uniqueClients = [...new Set(data.map(row => row.Col006))];
+
+  uniqueClients.forEach(client => {
+    const option = document.createElement('option');
+    option.value = client;
+    option.textContent = client;
+    dropdown.appendChild(option);
+  });
+
+  dropdown.addEventListener('change', () => {
+    const selectedClient = dropdown.value;
+    renderFilteredData(selectedClient);
+  });
+}
+
+
+function renderFilteredData(client) {
+  const filtered = client === 'All'
+    ? allData
+    : allData.filter(row => row.Col006 === client);
+
+  const grouped = {};
+
+  filtered.forEach(entry => {
+    const question = entry.Col005;
+    const answer = entry.Col002;
+    const count = entry.Col003;
+
+    if (!grouped[question]) grouped[question] = {};
+    if (!grouped[question][answer]) grouped[question][answer] = 0;
+
+    grouped[question][answer] += count;
+  });
+
+  const formatted = Object.entries(grouped).map(([question, answers]) => ({
+    question,
+    answers
+  }));
+
+  renderReportingTable(formatted);
+}
+
 
 function renderReportingTable(data) {
   const tbody = document.getElementById('report-body');
@@ -48,31 +74,20 @@ function renderReportingTable(data) {
       <td>${topAnswer}<br><small>${topPercent}%</small></td>
       <td>${total}</td>
     `;
-    
 
+    mainRow.addEventListener('click', () => {
+      const detailRow = document.getElementById(`detail-${index}`);
+      const exclusiveMode = document.getElementById('exclusiveToggle').checked;
 
- mainRow.addEventListener('click', () => {
-  const detailRow = document.getElementById(`detail-${index}`);
-  const exclusiveMode = document.getElementById('exclusiveToggle').checked;
-
-  if (exclusiveMode) {
-    const allDetails = document.querySelectorAll('.detail-row');
-    allDetails.forEach(row => {
-      if (row !== detailRow) {
-        row.style.display = 'none';
+      if (exclusiveMode) {
+        const allDetails = document.querySelectorAll('.detail-row');
+        allDetails.forEach(row => {
+          if (row !== detailRow) row.style.display = 'none';
+        });
       }
+
+      detailRow.style.display = detailRow.style.display === 'table-row' ? 'none' : 'table-row';
     });
-  }
-
-  detailRow.style.display = detailRow.style.display === 'table-row' ? 'none' : 'table-row';
-});
-
-
-
-
-
-
-
 
     const detailRow = document.createElement('tr');
     detailRow.id = `detail-${index}`;
@@ -92,12 +107,12 @@ function renderReportingTable(data) {
       inner += `
         <tr class="${isTop ? 'top-answer' : ''}">
           <td>
-          ${answer}
+            ${answer}
             ${isTop ? `
-                <span class="tooltip-wrapper">
-                    <div class="tooltip-inside"><i class="fa-solid fa-arrow-left"></i> TOP</div>
-                </span>
-            ` : ''}</td>
+              <span class="tooltip-wrapper">
+                <div class="tooltip-inside"><i class="fa-solid fa-arrow-left"></i> TOP</div>
+              </span>` : ''}
+          </td>
           <td>${percent}%</td>
           <td>${count}</td>
         </tr>
