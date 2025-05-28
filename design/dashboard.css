@@ -99,6 +99,13 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.chart-box.active {
+  background-color: #999999;
+  color: #000;
 }
 
 .chart-box:hover{
