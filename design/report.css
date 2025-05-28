@@ -65,3 +65,20 @@
   color: #f39c12;
 }
 
+
+
+
+.percent-green {
+  background-color: #2ecc705b;
+  font-weight: bold;
+}
+
+.percent-orange {
+  background-color: #e67d225d;
+  font-weight: bold;
+}
+
+.percent-red {
+  background-color: #e74d3c57;
+  font-weight: bold;
+}

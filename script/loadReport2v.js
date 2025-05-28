@@ -78,6 +78,7 @@ function renderReportingTable(data) {
     const total = Object.values(item.answers).reduce((a, b) => a + b, 0);
     const sorted = Object.entries(item.answers)
 
+
     let topAnswer = null;
     let topCount = -Infinity;
 
@@ -88,7 +89,9 @@ function renderReportingTable(data) {
       }
     });
 
+
 	const topPercent = total ? ((topCount / total) * 100).toFixed(2) : '0.00';
+
 
     const mainRow = document.createElement('tr');
     mainRow.classList.add('main-row');
@@ -97,6 +100,8 @@ function renderReportingTable(data) {
       <td>${topAnswer}<br><small>${topPercent}%</small></td>
       <td>${total}</td>
     `;
+
+
 
     mainRow.addEventListener('click', () => {
       const detailRow = document.getElementById(`detail-${index}`);
@@ -112,9 +117,13 @@ function renderReportingTable(data) {
       detailRow.style.display = detailRow.style.display === 'table-row' ? 'none' : 'table-row';
     });
 
+
+
     const detailRow = document.createElement('tr');
     detailRow.id = `detail-${index}`;
     detailRow.classList.add('detail-row');
+
+
 
     let inner = `
       <table class="inner-table">
@@ -124,26 +133,44 @@ function renderReportingTable(data) {
         <tbody>
     `;
 
+
+
 	sorted.forEach(([answer, count]) => {
-      const percent = total ? ((count / total) * 100).toFixed(2) : '0.00';
-      const isTop = answer === topAnswer;
-      inner += `
-        <tr class="${isTop ? 'top-answer' : ''}">
-          <td>
-            ${answer}
-            ${isTop ? `
-              <span class="tooltip-wrapper">
-                <div class="tooltip-inside"><i class="fa-solid fa-arrow-left"></i> TOP</div>
-              </span>` : ''}
-          </td>
-          <td>${percent}%</td>
-          <td>${count}</td>
-        </tr>
-      `;
+      	const percentValue = total ? (count / total) * 100 : 0;
+		const percent = percentValue.toFixed(2);
+
+		let percentClass = '';
+		if (percentValue >= 90) {
+		  percentClass = 'percent-green';
+		} else if (percentValue >= 60) {
+		  percentClass = 'percent-orange';
+		} else {
+		  percentClass = 'percent-red';
+		}
+
+
+      	const isTop = answer === topAnswer;
+      	inner += `
+      	  <tr class="${isTop ? 'top-answer' : ''}">
+      	    <td>
+      	      ${answer}
+      	      ${isTop ? `
+      	        <span class="tooltip-wrapper">
+      	          <div class="tooltip-inside"><i class="fa-solid fa-arrow-left"></i> TOP</div>
+      	        </span>` : ''}
+      	    </td>
+      	    <td class="${percentClass}">${percent}%</td>
+      	    <td>${count}</td>
+      	  </tr>
+      	`;
     });
+
+
 
     inner += '</tbody></table>';
     detailRow.innerHTML = `<td colspan="3">${inner}</td>`;
+
+
 
     tbody.appendChild(mainRow);
     tbody.appendChild(detailRow);

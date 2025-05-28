@@ -1,9 +1,9 @@
 footer {
   background-color: #1f1f1f;
   color: #f0f0f0;
-  padding: 3em 1.5em;
+  padding: 1em 1em 1.5em 1em;
   font-size: 14px;
-  max-height: 25vh;
+  max-height: 15vh;
   overflow-y: auto;
   scrollbar-width: none;
   z-index: 1;
@@ -25,7 +25,6 @@ footer {
 
 .footer-section p,
 .footer-section a {
-  margin: 6px 0;
   color: #f0f0f0;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -43,7 +42,7 @@ footer {
 }
 
 footer {
-    max-height: 16vh;
+    max-height: 12vh;
 }
 
 footer:hover {
