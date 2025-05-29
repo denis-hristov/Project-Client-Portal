@@ -77,7 +77,7 @@ function renderFilteredData(client) {
 }
 
 
-
+// table create
 function renderReportingTable(data) {
   	const tbody = document.getElementById('report-body');
   	tbody.innerHTML = '';
@@ -100,7 +100,7 @@ function renderReportingTable(data) {
 
 		const topPercent = total ? ((topCount / total) * 100).toFixed(2) : '0.00';
 
-
+		// table main row
   	  	const mainRow = document.createElement('tr');
   	  	mainRow.classList.add('main-row');
   	  	mainRow.innerHTML = `
@@ -110,7 +110,7 @@ function renderReportingTable(data) {
 		`;
 
 
-
+		// show/hide (checkbox)
   	  	mainRow.addEventListener('click', () => {
   	  	  	const detailRow = document.getElementById(`detail-${index}`);
   	  	  	const exclusiveMode = document.getElementById('exclusiveToggle').checked;
@@ -132,7 +132,7 @@ function renderReportingTable(data) {
   	  	detailRow.classList.add('detail-row');
 
 
-
+		// drop-down details table
   	  	let inner = `
   	  	  	<table class="inner-table">
   	  	    	<thead>
@@ -147,6 +147,7 @@ function renderReportingTable(data) {
   	    	const percentValue = total ? (count / total) * 100 : 0;
 			const percent = percentValue.toFixed(2);
 
+			// ui color by %
 			let percentClass = '';
 			if (percentValue >= 90) {
 			  	percentClass = 'percent-green';
@@ -156,7 +157,7 @@ function renderReportingTable(data) {
 			  	percentClass = 'percent-red';
 			}
 
-
+			// details table row
   	    	const isTop = answer === topAnswer;
   	    	inner += `
   	    	  	<tr class="${isTop ? 'top-answer' : ''}">

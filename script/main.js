@@ -1,7 +1,7 @@
-import { fetchData, populateClientDropdown } from './fetchData.js';
+import { fetchData, populateClientDropdown } from './main code/fetchData.js';
 import { renderFullTable, renderSummarizedTable,
-    renderTop3Questions, renderBottom3Questions, } from './renderTable.js';
-import { destroyCurrentChart } from './renderChart.js';
+    renderTop3Questions, renderBottom3Questions, } from './main code/renderTable.js';
+import { destroyCurrentChart } from './main code/renderChart.js';
 
 let selectedClient = 'All';
 

@@ -37,11 +37,19 @@ document.addEventListener("DOMContentLoaded", function () {
   	  	}
   	});
 
-	// scrol up
-  	scrollBtn.addEventListener("click", function () {
-  	  	window.scrollTo({
-  	    	top: 0,
-  	    	behavior: "smooth"
-  	  	});
-  	});
+	// scrol up mobile
+	scrollBtn.addEventListener("click", function () {
+		mainContainer.scrollTo({
+			top: 0,
+			behavior: "smooth"
+		});
+	});
+
+	// scrol up desktop
+	scrollBtn.addEventListener("click", function () {
+		tableContainer.scrollTo({
+			top: 0,
+			behavior: "smooth"
+		});
+	});
 });

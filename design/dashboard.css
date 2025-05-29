@@ -1,3 +1,4 @@
+/* filter */
 header {
   display: flex;
   flex-direction: column;
@@ -34,6 +35,7 @@ header {
 }
 
 
+/* main containr */
 .container {
   display: flex;
   flex: 1;
@@ -42,6 +44,7 @@ header {
 }
 
 
+/* navigation */
 nav {
   width: 150px;
   background-color: #ddd;
@@ -76,6 +79,7 @@ nav a:hover {
   background-color: #ccc;
 }
 
+
 main {
   flex: 1;
   padding: 10px;
@@ -85,6 +89,8 @@ main {
   min-width: 0;
 }
 
+
+/* buttons */
 .charts {
   display: flex;
   gap: 10px;
@@ -112,6 +118,8 @@ main {
   background-color: #ccc;
 }
 
+
+/* table */
 .table-container {
   overflow-x: auto;
   max-width: 100%;
@@ -140,7 +148,7 @@ td {
 }
 
 
-
+/* button for up */
 #scrollToTopBtn {
   position: fixed;
   z-index: 9999;
@@ -159,12 +167,12 @@ td {
   right: 2em;
 }
 
-
 #scrollToTopBtn:hover {
   background-color: #000;
 }
 
 
+/* mobile */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;

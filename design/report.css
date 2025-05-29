@@ -1,3 +1,4 @@
+/* details table */
 .detail-row {
   display: none;
 }
@@ -18,7 +19,7 @@
 }
 
 
-
+/* label on details table */
 label{
   margin-left: 10px;
 }
@@ -70,8 +71,7 @@ label{
 }
 
 
-
-
+/* ui color by % */
 .percent-green {
   background-color: #2ecc705b;
   font-weight: bold;
