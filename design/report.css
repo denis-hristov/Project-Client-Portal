@@ -149,3 +149,12 @@ label{
   background-color: #e74d3c57;
   font-weight: bold;
 }
+
+
+/* arrow disappearance */
+.hide-tooltip {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+

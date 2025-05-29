@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	  	  renderFilteredData(selectedClient);
 	  	})
 	  	.catch(err => console.error('Error JSON:', err));
+
 });
 
 
@@ -183,5 +184,18 @@ function renderReportingTable(data) {
 		
   	  	tbody.appendChild(mainRow);
   	  	tbody.appendChild(detailRow);
+
+		// arrow disappearance
+		const newTooltips = detailRow.querySelectorAll('.tooltip-wrapper');
+		newTooltips.forEach(wrapper => {
+		  	wrapper.addEventListener('click', function () {
+		  	  	const tooltip = wrapper.querySelector('.tooltip-inside');
+		  	  	tooltip.classList.add('hide-tooltip');
+				
+		  	  	setTimeout(() => {
+		  	  	  	tooltip.classList.remove('hide-tooltip');
+		  	  	}, 3000);
+		  	});
+		});
   	});
 }	

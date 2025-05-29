@@ -34,6 +34,48 @@ footer {
   color: #00bfa6;
 }
 
+/* scroll indicator */
+  .scroll-indicator {
+    display: none;
+    position: fixed;
+    right: 20px;
+    text-align: center;
+    font-size: 1rem;
+    color: #f0f0f0;
+    z-index: 1000;
+    animation: fadeIn 1s ease-in;
+  }
+
+  .scroll-indicator .arrow {
+    font-size: 2rem;
+    animation: bounce 1s infinite;
+    display: block;
+    margin-top: 0.2em;
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(8px);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+
 
 /* mobile footer */
 @media (max-width: 768px) {
@@ -54,4 +96,10 @@ footer {
   footer:hover::-webkit-scrollbar {
     display: none;
   }
+
+  /* scroll indicator */
+  .scroll-indicator {
+    display: block;
+  }
+
 }
