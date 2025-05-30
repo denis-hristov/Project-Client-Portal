@@ -27,7 +27,7 @@
   cursor: pointer;
   width: 30px;
   height: 30px;
-  border: 3px solid #ddd;
+  border: 3px solid #ccc;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
@@ -37,7 +37,7 @@
 .checkBox div {
   width: 60px;
   height: 60px;
-  background-color: #34f522;
+  background-color: #82c91e;
   top: -52px;
   left: -52px;
   position: absolute;
@@ -102,13 +102,13 @@ label{
   bottom: 125%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #1f1f1f;
-  color: #fff;
+  background-color: #000;
+  color: white;
   padding: 6px 8px 6px 0px;
   border-radius: 8px;
   font-size: 14px;
   white-space: nowrap;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 18px #f5f5f5;
   transition: all 0.2s ease-in-out;
   z-index: 999;
 }
@@ -121,7 +121,7 @@ label{
   transform: rotate(90deg);
   border-width: 6px;
   border-style: solid;
-  border-color: #1f1f1f transparent transparent transparent;
+  border-color: #000 transparent transparent transparent;
 }
 
 .tooltip-wrapper:hover .tooltip-inside {
@@ -130,7 +130,7 @@ label{
 
 .tooltip-inside i {
   margin-left: 6px;
-  color: #f39c12;
+  color: #f783ac;
 }
 
 

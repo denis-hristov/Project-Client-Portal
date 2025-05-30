@@ -72,7 +72,8 @@ export function renderTop3Questions(data) {
   	  	if (!questionStats[question]) {
   	  	  	questionStats[question] = {
   	  	  	  	total: 0,
-  	  	  	  	answers: {}
+  	  	  	  	answers: {},
+				idRow: row.Col001
   	  	  	};
   	  	}
 	  
@@ -94,6 +95,7 @@ export function renderTop3Questions(data) {
   	top3.forEach(([question, stats]) => {
   	  	const tr = document.createElement('tr');
   	  	tr.innerHTML = `
+			<td>${stats.idRow}</td>
   	  	  	<td>${question}</td>
   	  	  	<td>${stats.total}</td>
   	  	  	<td>${Object.entries(stats.answers).map(([ans, cnt]) => `${ans} (${cnt})`).join(', ')}</td>
@@ -121,7 +123,8 @@ export function renderBottom3Questions(data) {
   	  	if (!questionStats[question]) {
   	  	  	questionStats[question] = {
   	  	  	  	total: 0,
-  	  	  	  	answers: {}
+  	  	  	  	answers: {},
+				idRow: row.Col001
   	  	  	};
   	  	}
 	  
@@ -143,6 +146,7 @@ export function renderBottom3Questions(data) {
   	bottom3.forEach(([question, stats]) => {
   	  	const tr = document.createElement('tr');
   	  	tr.innerHTML = `
+			<td>${stats.idRow}</td>
   	  	  	<td>${question}</td>
   	  	  	<td>${stats.total}</td>
   	  	  	<td>${Object.entries(stats.answers).map(([ans, cnt]) => `${ans} (${cnt})`).join(', ')}</td>
